@@ -22,3 +22,36 @@ a.photo{
 a.photo:hover{
     padding: 10px;
 }
+
+@media screen and (max-width: 480px) {
+    header {
+        display: flex;
+        align-items: center;
+    }
+    
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    header .login-info {
+        display: flex;
+        flex-drection: column;
+        font-size: 0.85em:
+    }
+
+     header .login-info {
+        padding: 5px 0;
+    }
+
+    main{
+        width: 80%;
+    }
+}
+
+}
+@media screen and (max-width: 1200px) {
+
+    main {
+        width: 60%;
+    }
+}

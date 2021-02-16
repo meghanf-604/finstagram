@@ -5,6 +5,8 @@
         <li><%= message %></li>
     <% end %>
 </ul>
+# 
+# <%= erb(:'shared/errors', { locals: { errors: @finstagram_post.errors } }) %><%= erb(:'shared/errors', { locals: { errors: @finstagram_post.errors } }) %>
 
 <form action="/finstagram_posts" method="POST">
   <div class="form-group">

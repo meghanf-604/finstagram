@@ -6,6 +6,9 @@
   <% end %>
 </ul>
 
+# 
+# <%= erb(:'shared/errors', { locals: { errors: @finstagram_post.errors } }) %><%= erb(:'shared/errors', { locals: { errors: @finstagram_post.errors } }) %>
+
 <form action="/signup" method="POST">
     <div class="form-group">
         <label for="email">Email</label>

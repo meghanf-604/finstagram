@@ -2,7 +2,15 @@ helpers do
     def current_user
         User.find_by(id: session[:user_id])
     end
+
+    # def logged_in?
+    #     !!current_user
+    # end
 end
+#/conditional login
+# before '/finstagrampost_new' do
+#     redirect to ('/login') unless logged_in?
+# end
 
 get '/' do
   @finstagram_posts = FinstagramPost.order(created_at: :desc)
@@ -21,6 +29,8 @@ get '/finstagram_posts/new' do
 end
 
 get '/finstagram_posts/:id' do
+    # halt(404, erb(: 'errors/404')) unless !FinstagramPost.where(id: params[:id}).empty?
+
     @finstagram_post = FinstagramPost.find(params[:id])
     erb(:"finstagram_posts/show")
 end
@@ -76,4 +86,31 @@ end
     get '/logout' do  
         session[:user_id] = nil
         redirect to('/')
+end
+
+post '/comments' do
+    text = params[:text]
+    finstagram_post_id = params[:finstagram_post_id]
+
+    comment = Comment.new({ text: text, finstagram_post_id: finstagram_post_id, user_id: current_user.id})
+
+    comment.save
+
+    redirect(back)
+end
+
+post '/likes' do
+    finstagram_post_id = params[:finstagram_post_id]
+
+    like = Like.new({ finstagram_post_id: finstagram_post_id, user_id: current_user.id})
+
+    like.save
+
+    redirect(back)
+end
+
+delete '/likes/:id' do
+    like = Like.find(params[:id])
+    like.destroy
+    redirect(back)
 end
